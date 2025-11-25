@@ -1,10 +1,8 @@
 """
 PDF Processing Utilities
-Handles PDF text extraction and image conversion
+Handles PDF text extraction and validation
 """
 import PyPDF2
-from pdf2image import convert_from_bytes
-from PIL import Image
 import io
 import streamlit as st
 
@@ -30,33 +28,6 @@ def extract_text_from_pdf(pdf_file):
     
     except Exception as e:
         st.error(f"Error extracting text from PDF: {str(e)}")
-        return None
-
-
-def pdf_to_images(pdf_file):
-    """
-    Convert PDF pages to images
-    
-    Args:
-        pdf_file: Uploaded PDF file object
-        
-    Returns:
-        list: List of PIL Image objects
-    """
-    try:
-        # Read PDF bytes
-        pdf_bytes = pdf_file.read()
-        
-        # Convert to images
-        images = convert_from_bytes(pdf_bytes)
-        
-        # Reset file pointer
-        pdf_file.seek(0)
-        
-        return images
-    
-    except Exception as e:
-        st.error(f"Error converting PDF to images: {str(e)}")
         return None
 
 
