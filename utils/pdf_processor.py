@@ -9,7 +9,7 @@ import streamlit as st
 
 def extract_text_from_pdf(pdf_file):
     """
-    Extract text content from a PDF file
+    Extract text content from a PDF file with robust error handling
     
     Args:
         pdf_file: Uploaded PDF file object
@@ -21,13 +21,31 @@ def extract_text_from_pdf(pdf_file):
         pdf_reader = PyPDF2.PdfReader(pdf_file)
         text = ""
         
-        for page in pdf_reader.pages:
-            text += page.extract_text()
+        for page_num, page in enumerate(pdf_reader.pages):
+            try:
+                # Extract text from page
+                page_text = page.extract_text()
+                
+                # Clean invalid surrogate characters
+                if page_text:
+                    # Remove surrogate pairs that cause encoding issues
+                    page_text = page_text.encode('utf-8', errors='ignore').decode('utf-8', errors='ignore')
+                    text += page_text
+                    
+            except Exception as page_error:
+                # Skip problematic pages but continue with others
+                st.warning(f"⚠️ Could not extract text from page {page_num + 1}: {str(page_error)}")
+                continue
         
+        if not text.strip():
+            st.error("❌ No text could be extracted from the PDF. It might be a scanned image or encrypted.")
+            return None
+            
         return text.strip()
     
     except Exception as e:
-        st.error(f"Error extracting text from PDF: {str(e)}")
+        st.error(f"❌ Error reading PDF file: {str(e)}")
+        st.info("💡 Try: 1) Re-saving the PDF, 2) Using a different PDF, or 3) Converting to a text-based PDF")
         return None
 
 
@@ -70,7 +88,14 @@ def process_pdf_cached(pdf_bytes):
         text = ""
         
         for page in pdf_reader.pages:
-            text += page.extract_text()
+            try:
+                page_text = page.extract_text()
+                if page_text:
+                    # Clean invalid surrogate characters
+                    page_text = page_text.encode('utf-8', errors='ignore').decode('utf-8', errors='ignore')
+                    text += page_text
+            except:
+                continue
         
         return text.strip()
     
