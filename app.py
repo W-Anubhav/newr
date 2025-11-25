@@ -94,6 +94,7 @@ st.markdown("""
         padding: 1rem;
         border-radius: 5px;
         margin: 1rem 0;
+        color: #1565C0;
     }
     
     .success-box {
@@ -102,6 +103,7 @@ st.markdown("""
         padding: 1rem;
         border-radius: 5px;
         margin: 1rem 0;
+        color: #2E7D32;
     }
     
     .warning-box {
@@ -110,6 +112,7 @@ st.markdown("""
         padding: 1rem;
         border-radius: 5px;
         margin: 1rem 0;
+        color: #E65100;
     }
     
     /* Buttons */

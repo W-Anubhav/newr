@@ -33,8 +33,7 @@ def extract_text_from_pdf(pdf_file):
                     text += page_text
                     
             except Exception as page_error:
-                # Skip problematic pages but continue with others
-                st.warning(f"⚠️ Could not extract text from page {page_num + 1}: {str(page_error)}")
+                # Skip problematic pages silently but continue with others
                 continue
         
         if not text.strip():
