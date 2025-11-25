@@ -80,11 +80,22 @@ st.markdown("""
         margin-bottom: 1rem;
         border-left: 4px solid #667eea;
         transition: transform 0.2s, box-shadow 0.2s;
+        color: #1f1f1f;
     }
     
     .feature-card:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .feature-card h3 {
+        color: #667eea;
+        margin-top: 0;
+    }
+    
+    .feature-card p {
+        color: #424242;
+        margin-bottom: 0;
     }
     
     /* Info boxes */
