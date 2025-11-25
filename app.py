@@ -143,6 +143,7 @@ st.markdown("""
         border-radius: 10px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         margin: 1rem 0;
+        color: #1f1f1f;
     }
     
     /* Chat messages */
@@ -150,16 +151,19 @@ st.markdown("""
         padding: 1rem;
         border-radius: 10px;
         margin: 0.5rem 0;
+        color: #1f1f1f;
     }
     
     .user-message {
         background: #E3F2FD;
         margin-left: 2rem;
+        color: #0D47A1;
     }
     
     .ai-message {
         background: #F3E5F5;
         margin-right: 2rem;
+        color: #4A148C;
     }
 </style>
 """, unsafe_allow_html=True)
