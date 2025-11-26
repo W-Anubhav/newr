@@ -176,6 +176,21 @@ st.markdown("""
         margin-right: 2rem;
         color: #4A148C;
     }
+    
+    /* Hide Streamlit Branding */
+    #MainMenu {visibility: hidden;}
+    header {visibility: hidden;}
+    footer {visibility: hidden;}
+    .stDeployButton {display:none;}
+    
+    /* Hide additional Streamlit elements */
+    [data-testid="stToolbar"] {visibility: hidden !important;}
+    [data-testid="stDecoration"] {visibility: hidden !important;}
+    [data-testid="stStatusWidget"] {visibility: hidden !important;}
+    [data-testid="stHeader"] {visibility: hidden !important;}
+    
+    /* Hide specific Streamlit Cloud elements if possible via CSS */
+    .viewerBadge_container__1QSob {display: none !important;}
 </style>
 """, unsafe_allow_html=True)
 
